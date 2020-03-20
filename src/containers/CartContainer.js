@@ -1,9 +1,9 @@
 import React from "react";
 
-import CartItem from "./CartItem";
-import CartResult from "./CartResult";
+import CartItem from "../components/CartItem";
+import CartResult from "../components/CartResult";
 
-const CartList = () => {
+const CartContainer = () => {
   return (
     <section className="section">
       <div className="table-responsive">
@@ -28,4 +28,4 @@ const CartList = () => {
   );
 };
 
-export default CartList;
+export default CartContainer;

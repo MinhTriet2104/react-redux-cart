@@ -1,10 +1,10 @@
 import React from "react";
 import { useSelector } from "react-redux";
 
-import ProductItem from "./ProductItem";
-import Message from "./Message";
+import ProductItem from "../components/ProductItem";
+import Message from "../components/Message";
 
-const ProductsList = () => {
+const ProductsContainer = () => {
   const products = useSelector(state => state.products);
 
   return (
@@ -24,4 +24,4 @@ const ProductsList = () => {
   );
 };
 
-export default ProductsList;
+export default ProductsContainer;
