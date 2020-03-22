@@ -1,9 +1,18 @@
 import React from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
 
 import CartItem from "../components/CartItem";
 import CartResult from "../components/CartResult";
 
-const CartContainer = () => {
+const CartContainer = ({ cart }) => {
+  function totalAmount() {
+    return cart.reduce(
+      (total, item) => total + item.product.price * item.quantity,
+      0
+    );
+  }
+
   return (
     <section className="section">
       <div className="table-responsive">
@@ -19,8 +28,14 @@ const CartContainer = () => {
             </tr>
           </thead>
           <tbody>
-            <CartItem />
-            <CartResult />
+            {cart.map((item, index) => (
+              <CartItem
+                key={index}
+                product={item.product}
+                quantity={item.quantity}
+              />
+            ))}
+            <CartResult total={totalAmount()} />
           </tbody>
         </table>
       </div>
@@ -28,4 +43,26 @@ const CartContainer = () => {
   );
 };
 
-export default CartContainer;
+CartContainer.propTypes = {
+  cart: PropTypes.arrayOf(
+    PropTypes.shape({
+      product: PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        name: PropTypes.string.isRequired,
+        image: PropTypes.string.isRequired,
+        price: PropTypes.number.isRequired,
+        inventory: PropTypes.number.isRequired,
+        rating: PropTypes.number.isRequired
+      }).isRequired,
+      quantity: PropTypes.number.isRequired
+    })
+  ).isRequired
+};
+
+const mapStateToProps = state => {
+  return {
+    cart: state.cart
+  };
+};
+
+export default connect(mapStateToProps, null)(CartContainer);

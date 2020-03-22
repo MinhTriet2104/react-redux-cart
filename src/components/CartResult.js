@@ -1,6 +1,6 @@
 import React from "react";
 
-const CartResult = () => {
+const CartResult = ({ total }) => {
   return (
     <tr>
       <td colSpan="3"></td>
@@ -11,7 +11,7 @@ const CartResult = () => {
       </td>
       <td>
         <h4>
-          <strong>15$</strong>
+          <strong>{total}$</strong>
         </h4>
       </td>
       <td colSpan="3">

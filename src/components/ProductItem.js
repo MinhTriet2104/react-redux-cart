@@ -8,13 +8,13 @@ const ProductItem = ({ product }) => {
     for (let i = 1; i <= 5; i++) {
       if (i <= rating) {
         ratings.push(
-          <li>
+          <li key={i}>
             <i className="fa fa-star"></i>
           </li>
         );
       } else {
         ratings.push(
-          <li>
+          <li key={i}>
             <i className="fa fa-star-o"></i>
           </li>
         );
@@ -28,14 +28,14 @@ const ProductItem = ({ product }) => {
       <div className="card text-center card-cascade narrower">
         <div className="view overlay hm-white-slight z-depth-1">
           <img src={image} className="img-fluid" alt={name} />
-          <a>
+          <button>
             <div className="mask waves-light waves-effect waves-light"></div>
-          </a>
+          </button>
         </div>
         <div className="card-body">
           <h4 className="card-title">
             <strong>
-              <a>{name}</a>
+              <button>{name}</button>
             </strong>
           </h4>
           <ul className="rating">{showRating(rating)}</ul>
@@ -43,7 +43,7 @@ const ProductItem = ({ product }) => {
           <div className="card-footer">
             <span className="left">{price}$</span>
             <span className="right">
-              <a
+              <button
                 className="btn-floating blue-gradient"
                 data-toggle="tooltip"
                 data-placement="top"
@@ -51,7 +51,7 @@ const ProductItem = ({ product }) => {
                 data-original-title="Add to Cart"
               >
                 <i className="fa fa-shopping-cart"></i>
-              </a>
+              </button>
             </span>
           </div>
         </div>
