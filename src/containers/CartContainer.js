@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 
 import CartItem from "../components/CartItem";
 import CartResult from "../components/CartResult";
+import { MSG_CART_EMPTY } from "../constants/Message";
 
 const CartContainer = ({ cart }) => {
   function totalAmount() {
@@ -28,13 +29,19 @@ const CartContainer = ({ cart }) => {
             </tr>
           </thead>
           <tbody>
-            {cart.map((item, index) => (
-              <CartItem
-                key={index}
-                product={item.product}
-                quantity={item.quantity}
-              />
-            ))}
+            {cart.length === 0 ? (
+              <tr>
+                <th className="text-center">{MSG_CART_EMPTY}</th>
+              </tr>
+            ) : (
+              cart.map((item, index) => (
+                <CartItem
+                  key={index}
+                  product={item.product}
+                  quantity={item.quantity}
+                />
+              ))
+            )}
             <CartResult total={totalAmount()} />
           </tbody>
         </table>

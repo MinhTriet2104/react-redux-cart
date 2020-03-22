@@ -1,6 +1,6 @@
 import React from "react";
 
-const ProductItem = ({ product }) => {
+const ProductItem = ({ product, handleAddToCart }) => {
   const { id, name, image, description, price, inventory, rating } = product;
 
   function showRating(rating) {
@@ -49,6 +49,7 @@ const ProductItem = ({ product }) => {
                 data-placement="top"
                 title=""
                 data-original-title="Add to Cart"
+                onClick={handleAddToCart}
               >
                 <i className="fa fa-shopping-cart"></i>
               </button>
