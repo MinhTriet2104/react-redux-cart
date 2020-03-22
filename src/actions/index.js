@@ -9,3 +9,8 @@ export const changeMessage = message => ({
   type: types.CHANGE_MSG,
   message
 });
+
+export const deleteItemInCart = id => ({
+  type: types.DELETE_CART_ITEM,
+  id
+});

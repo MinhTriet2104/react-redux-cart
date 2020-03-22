@@ -1,6 +1,6 @@
 import React from "react";
 
-const CartItem = ({ product, quantity }) => {
+const CartItem = ({ product, quantity, deleteItem }) => {
   const { name, image, price } = product;
 
   return (
@@ -40,6 +40,7 @@ const CartItem = ({ product, quantity }) => {
           data-placement="top"
           title=""
           data-original-title="Remove item"
+          onClick={deleteItem}
         >
           X
         </button>

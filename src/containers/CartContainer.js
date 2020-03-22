@@ -4,9 +4,11 @@ import { connect } from "react-redux";
 
 import CartItem from "../components/CartItem";
 import CartResult from "../components/CartResult";
-import { MSG_CART_EMPTY } from "../constants/Message";
 
-const CartContainer = ({ cart }) => {
+import { MSG_CART_EMPTY } from "../constants/Message";
+import { deleteItemInCart } from "../actions/index";
+
+const CartContainer = ({ cart, deleteItem }) => {
   function totalAmount() {
     return cart.reduce(
       (total, item) => total + item.product.price * item.quantity,
@@ -39,6 +41,7 @@ const CartContainer = ({ cart }) => {
                   key={index}
                   product={item.product}
                   quantity={item.quantity}
+                  deleteItem={() => deleteItem(item.product.id)}
                 />
               ))
             )}
@@ -72,4 +75,10 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, null)(CartContainer);
+const mapDispatchToProps = dispatch => ({
+  deleteItem: id => {
+    dispatch(deleteItemInCart(id));
+  }
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(CartContainer);
